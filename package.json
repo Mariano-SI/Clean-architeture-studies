@@ -5,7 +5,10 @@
   "scripts": {
     "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/common/infrastructure/http/server.ts",
     "lint": "eslint .",
-    "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d src/common/infrastructure/database/typeorm.ts",
+    "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
+    "migration:run": "npm run typeorm -- migration:run -d src/common/infrastructure/database/typeorm.ts",
+    "migration:generate": "npm run typeorm -- migration:generate -d src/common/infrastructure/database/typeorm.ts -n",
+    "migration:create": "npm run typeorm -- migration:create",
     "test": "npx dotenv-cli -e .env.test -- jest --runInBand"
   },
   "keywords": [],
