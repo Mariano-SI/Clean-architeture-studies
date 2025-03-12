@@ -18,9 +18,8 @@ export type SearchOutput<Model> = {
 
 export interface RepositoryInterface<Model, CreateProps> {
   create(props: CreateProps): Promise<Model>
-  insert(model: Model): Promise<Model>
   findById(id: string): Promise<Model>
   update(model: Model): Promise<Model>
   delete(id: string): Promise<void>
-  search(props: SearchInput): Promise<SearchOutput<Model>>
+  selectAll(props: SearchInput): Promise<SearchOutput<Model>>
 }
