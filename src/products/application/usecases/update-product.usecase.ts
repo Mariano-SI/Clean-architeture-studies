@@ -1,5 +1,6 @@
 import { ProductsRepository } from '@/products/domain/repositories/products.repository'
 import { NotFoundError } from '@/common/domain/errors/not-found-error'
+import { ConflictError } from '@/common/domain/errors/conflict-error'
 
 type Input = {
   id: string
@@ -31,7 +32,15 @@ export class UpdateProducUsecase {
 
     const fieldsToUpdate: Input = { id }
 
-    if (name) fieldsToUpdate.name = name
+    if (name) {
+      fieldsToUpdate.name = name
+      const productAlreadyExists = await this.productRepository.findByName(name)
+      if (productAlreadyExists) {
+        throw new ConflictError(
+          'An product with the provided name already exists',
+        )
+      }
+    }
 
     if (price) fieldsToUpdate.price = price
 
