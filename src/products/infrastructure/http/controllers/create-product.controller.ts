@@ -10,8 +10,11 @@ export async function createProductController(
 ): Promise<Response> {
   const createProductBodySchema = z.object({
     name: z.string(),
-    price: z.number(),
-    quantity: z.number(),
+    price: z.number().positive('O preço deve ser um número positivo'),
+    quantity: z
+      .number()
+      .int()
+      .positive('A quantidade deve ser um número inteiro positivo'),
   })
 
   const validatedData = createProductBodySchema.safeParse(req.body)
