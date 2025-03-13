@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import { createProductController } from '../controllers/create-product.controller'
 import { listProductController } from '../controllers/list-product.controller'
+import { UpdateProductController } from '../controllers/update-product-controller'
 
 const productsRouter = Router()
 
@@ -101,5 +102,7 @@ productsRouter.post('/', createProductController)
  *         description: The product was not found
  */
 productsRouter.get('/:id', listProductController)
+
+productsRouter.patch('/:id', UpdateProductController)
 
 export { productsRouter }
