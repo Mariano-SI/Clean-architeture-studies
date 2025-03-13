@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import { createProductController } from '../controllers/create-product.controller'
+import { listProductController } from '../controllers/list-product.controller'
 
 const productsRouter = Router()
 
@@ -75,5 +76,6 @@ const productsRouter = Router()
  *         description: Name already used on another product
  */
 productsRouter.post('/', createProductController)
+productsRouter.get('/:id', listProductController)
 
 export { productsRouter }
