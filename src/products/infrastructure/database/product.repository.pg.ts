@@ -14,6 +14,15 @@ import { productQueries } from './product.queries'
 export class ProductRepositoryPG implements ProductsRepository {
   private readonly sortableFields: string[] = ['name', 'created_at']
 
+  private static instance: ProductRepositoryPG
+
+  static getInstance(): ProductRepositoryPG {
+    if (!ProductRepositoryPG.instance) {
+      ProductRepositoryPG.instance = new ProductRepositoryPG()
+    }
+    return ProductRepositoryPG.instance
+  }
+
   async findByName(name: string): Promise<ProductModel> {
     const query = productQueries.FIND_BY_NAME
     const { rows } = await pool.query(query, [name])

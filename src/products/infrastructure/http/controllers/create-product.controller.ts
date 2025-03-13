@@ -28,7 +28,7 @@ export async function createProductController(
   }
 
   const { name, price, quantity } = validatedData.data
-  const productsRepository = new ProductRepositoryPG()
+  const productsRepository = ProductRepositoryPG.getInstance()
   const createProductUsecase = new CreateProductUseCase(productsRepository)
 
   const createdProduct = await createProductUsecase.execute({
