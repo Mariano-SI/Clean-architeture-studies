@@ -9,49 +9,46 @@ import {
   SearchInput,
   SearchOutput,
 } from '@/common/domain/repositories/repository-interface'
+import {productQueries} from './product.queries'
 
 export class ProductRepositoryPG implements ProductsRepository {
-  sortableFields: string[] = ['name', 'created_at']
+  private readonly sortableFields: string[] = ['name', 'created_at']
 
   async findByName(name: string): Promise<ProductModel> {
-    const query = 'SELECT * FROM products WHERE name = $1;'
+    const query = productQueries.FIND_BY_NAME
     const { rows } = await pool.query(query, [name])
     return rows.length ? rows[0] : null
   }
 
   async findAllByIds(productIds: ProductId[]): Promise<ProductModel[]> {
     const allIds = productIds.map(productId => productId.id)
-    const query = 'SELECT * FROM products WHERE id = ANY($1);'
+    const query = productQueries.FIND_ALL_BY_IDS
     const { rows } = await pool.query(query, [allIds])
     return rows
   }
 
   async create(props: CreateProductProps): Promise<ProductModel> {
     const { name, price, quantity } = props
-    const query =
-      'INSERT INTO products (name, price, quantity) VALUES ($1, $2, $3) RETURNING *;'
+    const query = productQueries.CREATE
     const { rows } = await pool.query(query, [name, price, quantity])
     return rows[0]
   }
 
   async findById(id: string): Promise<ProductModel> {
-    const query = 'SELECT * FROM products WHERE name = $1;'
+    const query = productQueries.FIND_BY_ID
     const { rows } = await pool.query(query, [id])
     return rows.length ? rows[0] : null
   }
 
   async update(model: ProductModel): Promise<ProductModel> {
     const { id, name, price, quantity } = model
-    const query = `UPDATE products
-    SET name = $1, price = $2, quantity = $3, updated_at = NOW()
-    WHERE id = $4
-    RETURNING *;`
+    const query = productQueries.UPDATE
     const { rows } = await pool.query(query, [name, price, quantity, id])
     return rows.length ? rows[0] : null
   }
 
   async delete(id: string): Promise<void> {
-    const query = 'DELETE * FROM products WHERE id = $1'
+    const query = productQueries.DELETE
     await pool.query(query, [id])
   }
 
