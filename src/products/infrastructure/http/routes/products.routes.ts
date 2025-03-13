@@ -103,6 +103,54 @@ productsRouter.post('/', createProductController)
  */
 productsRouter.get('/:id', listProductController)
 
+/**
+ * @swagger
+ * /products/{id}:
+ *   patch:
+ *     summary: Update a product by ID
+ *     description: Updates a product's details. Only the fields provided in the request body will be updated.
+ *     tags: [Products]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The product ID
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 description: New name of the product
+ *                 example: "Updated Product Name"
+ *               price:
+ *                 type: number
+ *                 description: New price of the product
+ *                 example: 199.99
+ *               quantity:
+ *                 type: integer
+ *                 description: New quantity of the product
+ *                 example: 50
+ *     responses:
+ *       200:
+ *         description: The product was successfully updated
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Product'
+ *       400:
+ *         description: Input data not provided or invalid
+ *       404:
+ *         description: The product was not found
+ *       409:
+ *         description: Name already used on another product
+ */
+
 productsRouter.patch('/:id', UpdateProductController)
 
 export { productsRouter }
