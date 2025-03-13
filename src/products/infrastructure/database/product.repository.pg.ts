@@ -9,7 +9,7 @@ import {
   SearchInput,
   SearchOutput,
 } from '@/common/domain/repositories/repository-interface'
-import {productQueries} from './product.queries'
+import { productQueries } from './product.queries'
 
 export class ProductRepositoryPG implements ProductsRepository {
   private readonly sortableFields: string[] = ['name', 'created_at']
