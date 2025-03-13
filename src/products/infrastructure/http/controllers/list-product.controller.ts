@@ -8,11 +8,11 @@ export async function listProductController(
   req: Request,
   res: Response,
 ): Promise<Response> {
-  const listProductBodySchema = z.object({
+  const listProductParamsSchema = z.object({
     id: z.string().uuid('O ID deve ser um UUID válido'),
   })
 
-  const validatedData = listProductBodySchema.safeParse(req.params)
+  const validatedData = listProductParamsSchema.safeParse(req.params)
 
   if (!validatedData.success) {
     throw new BadRequestError(
