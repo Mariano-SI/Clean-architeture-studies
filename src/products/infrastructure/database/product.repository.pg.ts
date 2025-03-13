@@ -51,9 +51,48 @@ export class ProductRepositoryPG implements ProductsRepository {
 
   async update(model: ProductModel): Promise<ProductModel> {
     const { id, name, price, quantity } = model
-    const query = productQueries.UPDATE
-    const { rows } = await pool.query(query, [name, price, quantity, id])
-    return rows.length ? rows[0] : null
+    const fieldsToUpdate: string[] = []
+    const values: (string | number)[] = []
+
+    values.push(id)
+
+    if (name) {
+      fieldsToUpdate.push(`name = $${values.length + 1}`)
+      values.push(name)
+    }
+    if (price) {
+      fieldsToUpdate.push(`price = $${values.length + 1}`)
+      values.push(price)
+    }
+    if (quantity) {
+      fieldsToUpdate.push(`quantity = $${values.length + 1}`)
+      values.push(quantity)
+    }
+
+    if (fieldsToUpdate.length === 0) {
+      return await this.findById(id)
+    }
+
+    const client = await pool.connect()
+
+    try {
+      await client.query('BEGIN')
+      await client.query('SELECT * FROM products WHERE id = $1 FOR UPDATE;', [
+        id,
+      ])
+
+      const query = productQueries.UPDATE(fieldsToUpdate)
+      const { rows } = await client.query(query, values)
+
+      await client.query('COMMIT')
+
+      return rows.length ? rows[0] : null
+    } catch (error) {
+      await client.query('ROLLBACK')
+      throw error
+    } finally {
+      client.release()
+    }
   }
 
   async delete(id: string): Promise<void> {
