@@ -7,5 +7,5 @@ export const productQueries = {
     SET ${fieldsToUpdate.join(', ')}, updated_at = NOW()
     WHERE id = $1
     RETURNING *;`,
-  DELETE: `DELETE * FROM products WHERE id = $1`,
+  DELETE: `DELETE FROM products WHERE id = $1`,
 }

@@ -4,7 +4,7 @@ import { z } from 'zod'
 import { ProductRepositoryPG } from '../../database/product.repository.pg'
 import { UpdateProducUsecase } from '@/products/application/usecases/update-product.usecase'
 
-export async function UpdateProductController(
+export async function updateProductController(
   req: Request,
   res: Response,
 ): Promise<Response> {
