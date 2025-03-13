@@ -1,7 +1,8 @@
 import { Router } from 'express'
 import { createProductController } from '../controllers/create-product.controller'
 import { listProductController } from '../controllers/list-product.controller'
-import { UpdateProductController } from '../controllers/update-product-controller'
+import { updateProductController } from '../controllers/update-product-controller'
+import { deleteProductController } from '../controllers/delete-product.controller'
 
 const productsRouter = Router()
 
@@ -151,6 +152,7 @@ productsRouter.get('/:id', listProductController)
  *         description: Name already used on another product
  */
 
-productsRouter.patch('/:id', UpdateProductController)
+productsRouter.patch('/:id', updateProductController)
+productsRouter.delete('/:id', deleteProductController)
 
 export { productsRouter }
