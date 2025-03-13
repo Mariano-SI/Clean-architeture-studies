@@ -36,6 +36,13 @@ export class CreateProductUseCase {
       quantity,
     })
 
-    return createdProduct
+    return {
+      id: createdProduct.id,
+      name: createdProduct.name,
+      price: createdProduct.price,
+      quantity: createdProduct.quantity,
+      created_at: createdProduct.created_at,
+      updated_at: createdProduct.updated_at,
+    }
   }
 }
