@@ -3,8 +3,11 @@ import { createProductController } from '../controllers/create-product.controlle
 import { listProductController } from '../controllers/list-product.controller'
 import { updateProductController } from '../controllers/update-product-controller'
 import { deleteProductController } from '../controllers/delete-product.controller'
+import { listProductsController } from '../controllers/list-products.controller'
 
 const productsRouter = Router()
+
+productsRouter.get('/', listProductsController)
 
 /**
  * @swagger
