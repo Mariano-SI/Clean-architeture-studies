@@ -153,6 +153,26 @@ productsRouter.get('/:id', listProductController)
  */
 
 productsRouter.patch('/:id', updateProductController)
+
+/**
+ * @swagger
+ * /products/{id}:
+ *   delete:
+ *     summary: Delete a product by ID
+ *     tags: [Products]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The product ID
+ *     responses:
+ *       204:
+ *         description: The product was successfully deleted
+ *       404:
+ *         description: The product was not found
+ */
 productsRouter.delete('/:id', deleteProductController)
 
 export { productsRouter }
