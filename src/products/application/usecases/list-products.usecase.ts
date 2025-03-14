@@ -19,7 +19,7 @@ type Output = {
   filter: string | null
 }
 
-export class ListPorductsUsecase {
+export class ListProductsUsecase {
   constructor(private readonly productsRepository: ProductsRepository) {}
   async execute(input: Input): Promise<Output> {
     const searchResult = await this.productsRepository.selectAll(input)
