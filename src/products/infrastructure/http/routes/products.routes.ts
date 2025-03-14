@@ -7,6 +7,52 @@ import { listProductsController } from '../controllers/list-products.controller'
 
 const productsRouter = Router()
 
+
+/**
+ * @swagger
+ * /products:
+ *   get:
+ *     summary: Returns a paginated list of products
+ *     tags: [Products]
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *           default: 1
+ *         description: The page number to retrieve
+ *       - in: query
+ *         name: per_page
+ *         schema:
+ *           type: integer
+ *           default: 15
+ *         description: Number of items per page
+ *       - in: query
+ *         name: sort
+ *         schema:
+ *           type: string
+ *           default: null
+ *         description: Field to sort by
+ *       - in: query
+ *         name: sort_dir
+ *         schema:
+ *           type: string
+ *           default: null
+ *         description: Sort direction (asc or desc)
+ *       - in: query
+ *         name: filter
+ *         schema:
+ *           type: string
+ *           default: null
+ *         description: Filter string to search for specific products
+ *     responses:
+ *       200:
+ *         description: A paginated list of products
+ *         content:
+ *           application/json:
+ *             schema:
+ *               
+ */
 productsRouter.get('/', listProductsController)
 
 /**
