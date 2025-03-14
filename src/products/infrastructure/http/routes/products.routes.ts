@@ -51,7 +51,6 @@ const productsRouter = Router()
  *         content:
  *           application/json:
  *             schema:
- *               
  */
 productsRouter.get('/', listProductsController)
 
