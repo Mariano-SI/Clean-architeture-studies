@@ -132,7 +132,7 @@ export class ProductRepositoryPG implements ProductsRepository {
     const totalQuery = `SELECT COUNT(*) FROM products ${whereClause};`
 
     const [totalResult, queryResult] = await Promise.all([
-      pool.query(totalQuery, values),
+      pool.query(totalQuery, filter ? [values[0]] : []),
       pool.query(query, values),
     ])
 
