@@ -1,4 +1,5 @@
 import { productsRouter } from '@/products/infrastructure/http/routes/products.routes'
+import { usersRouter } from '@/users/infrastructure/http/routes/users.routes'
 import { Router } from 'express'
 
 const routes = Router()
@@ -8,5 +9,6 @@ routes.get('/', (req, res) => {
 })
 
 routes.use('/products', productsRouter)
+routes.use('/users', usersRouter)
 
 export { routes }
