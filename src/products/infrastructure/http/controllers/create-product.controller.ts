@@ -1,4 +1,4 @@
-import { BadRequestError } from '@/common/domain/errors/bad-reques-error'
+import { BadRequestError } from '@/common/domain/errors/bad-request-error'
 import { CreateProductUseCase } from '@/products/application/usecases/create-product.usecase'
 import { Request, Response } from 'express'
 import { z } from 'zod'
