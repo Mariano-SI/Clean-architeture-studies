@@ -12,6 +12,15 @@ import { pool } from '@/common/infrastructure/database'
 
 export class UsersRepositoryPG implements UsersRepository {
   private readonly sortableFields: string[] = ['name', 'email', 'created_at']
+  private static instance: UsersRepositoryPG
+
+  static getInstance(): UsersRepositoryPG {
+    if (!UsersRepositoryPG.instance) {
+      UsersRepositoryPG.instance = new UsersRepositoryPG()
+    }
+    return UsersRepositoryPG.instance
+  }
+
   async findByName(name: string): Promise<UserModel> {
     const query = usersQueries.FIND_BY_NAME
     const { rows } = await pool.query(query, [name])

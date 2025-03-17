@@ -34,7 +34,7 @@ export class CreateUserController {
 
     const { name, email, password } = validBody.data
 
-    const userRepositoty = new UsersRepositoryPG()
+    const userRepositoty = UsersRepositoryPG.getInstance()
     const hashProvider = new HashProviderBcryptjs()
     const createUserUsecase = new CreateUserUsecase(
       userRepositoty,
