@@ -7,7 +7,6 @@ import { listProductsController } from '../controllers/list-products.controller'
 
 const productsRouter = Router()
 
-
 /**
  * @swagger
  * /products:
