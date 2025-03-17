@@ -1,7 +1,7 @@
 import { RepositoryInterface } from '@/common/domain/repositories/repository-interface'
 import { UserModel } from '../models/users.model'
 
-interface CreateUserProps {
+export interface CreateUserProps {
   id?: string
   name: string
   email: string
