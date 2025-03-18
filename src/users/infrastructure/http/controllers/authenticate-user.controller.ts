@@ -5,7 +5,6 @@ import { UsersRepositoryPG } from '../../database/user.repository.pg'
 import { AuthenticateUserUsecase } from '@/users/application/usecases/authenticate-user.usecase'
 import { HashProviderBcryptjs } from '@/common/infrastructure/providers/hash-provider.bcryptjs'
 import { AuthTokenProviderJsonwebtoken } from '@/common/infrastructure/providers/auth-token-provider.jsonwebtoken'
-import { access } from 'fs'
 
 export async function authenticateUserController(
   req: Request,
