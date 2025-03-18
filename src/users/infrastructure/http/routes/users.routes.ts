@@ -46,7 +46,7 @@ const usersRouter = Router()
  *         avatar: null
  *         created_at: 2023-01-01T10:00:00Z
  *         updated_at: 2023-01-01T10:00:00Z
-  *     UserListResponse:
+ *     UserListResponse:
  *       type: object
  *       properties:
  *         items:
