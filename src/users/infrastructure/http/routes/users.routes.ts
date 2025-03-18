@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import { createUserController } from '../controllers/create-user.controller'
 import { listUsersController } from '../controllers/list-users.controller'
+import { isAuthenticated } from '@/common/infrastructure/http/middlewares/isAuthenticated'
 
 const usersRouter = Router()
 
@@ -154,6 +155,8 @@ usersRouter.post('/', createUserController)
  *             schema:
  *               $ref: '#/components/schemas/UserListResponse'
  */
+
+usersRouter.use(isAuthenticated)
 usersRouter.get('/', listUsersController)
 
 export { usersRouter }
