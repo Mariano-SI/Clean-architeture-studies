@@ -22,6 +22,7 @@ const envSchema = z.object({
   CLOUDFLARE_R2_BUCKET_NAME: z.string(),
   AWS_ACCESS_KEY_ID: z.string(),
   AWS_SECRET_ACCESS_KEY: z.string(),
+  CLOUDFLARE_R2_DEV_SUBDOMAIN: z.string(),
 })
 
 const _env = envSchema.safeParse(process.env)
