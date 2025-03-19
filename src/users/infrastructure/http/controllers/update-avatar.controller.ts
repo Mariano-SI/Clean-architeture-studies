@@ -27,12 +27,12 @@ export async function updateAvatarController(
 
   const usersRepository = UsersRepositoryPG.getInstance()
   const uploadProvider = new UploaderProviderR2()
-  const listUsersUsecase = new UpdateAvatarUsecase(
+  const updateUserAvatarUsecase = new UpdateAvatarUsecase(
     usersRepository,
     uploadProvider,
   )
 
-  const updatedUser = await listUsersUsecase.execute({
+  const updatedUser = await updateUserAvatarUsecase.execute({
     fileContent: buffer,
     fileName: originalname.split(' ').join('-'),
     fileSize: size,
