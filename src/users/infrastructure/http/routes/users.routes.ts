@@ -4,6 +4,7 @@ import { listUsersController } from '../controllers/list-users.controller'
 import { isAuthenticated } from '@/common/infrastructure/http/middlewares/isAuthenticated'
 import multer from 'multer'
 import { BadRequestError } from '@/common/domain/errors/bad-request-error'
+import { updateAvatarController } from '../controllers/update-avatar.controller'
 
 const usersRouter = Router()
 
@@ -175,7 +176,6 @@ usersRouter.post('/', createUserController)
  *               $ref: '#/components/schemas/UserListResponse'
  */
 
-usersRouter.use(isAuthenticated)
 usersRouter.get('/', isAuthenticated, listUsersController)
 /**
  * @swagger
@@ -208,7 +208,7 @@ usersRouter.patch(
   '/avatar',
   isAuthenticated,
   upload.single('file'),
-  listUsersController,
+  updateAvatarController,
 )
 
 export { usersRouter }

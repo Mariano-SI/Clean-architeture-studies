@@ -23,7 +23,7 @@ export async function updateAvatarController(
     )
   }
 
-  const { buffer, originalName, size, mimetype } = isValidFileSchema.data
+  const { buffer, originalname, size, mimetype } = isValidFileSchema.data
 
   const usersRepository = UsersRepositoryPG.getInstance()
   const uploadProvider = new UploaderProviderR2()
@@ -34,7 +34,7 @@ export async function updateAvatarController(
 
   const updatedUser = await listUsersUsecase.execute({
     fileContent: buffer,
-    fileName: originalName.split(' ').join('-'),
+    fileName: originalname.split(' ').join('-'),
     fileSize: size,
     fileType: mimetype,
     user_id: req.user.id,
