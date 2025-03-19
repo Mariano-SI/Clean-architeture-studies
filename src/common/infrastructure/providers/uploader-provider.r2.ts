@@ -33,7 +33,7 @@ export class UploaderProviderR2 implements UploaderProvider {
     )
 
     console.log('uploaded', uploaded)
-    const fileUrl = `https://${env.CLOUDFLARE_R2_BUCKET_NAME}.${new URL(env.CLOUDFLARE_R2_URL).hostname}/${fileName}`
+    const fileUrl = `${env.CLOUDFLARE_R2_DEV_SUBDOMAIN}/${fileName}`
     return fileUrl
   }
 }
