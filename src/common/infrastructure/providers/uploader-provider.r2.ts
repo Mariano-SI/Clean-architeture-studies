@@ -23,7 +23,7 @@ export class UploaderProviderR2 implements UploaderProvider {
     fileType,
     fileContent,
   }: UploaderProps): Promise<string> {
-    const uploaded = await this.client.send(
+    await this.client.send(
       new PutObjectCommand({
         Bucket: env.CLOUDFLARE_R2_BUCKET_NAME,
         Key: fileName,
@@ -32,7 +32,6 @@ export class UploaderProviderR2 implements UploaderProvider {
       }),
     )
 
-    console.log('uploaded', uploaded)
     const fileUrl = `${env.CLOUDFLARE_R2_DEV_SUBDOMAIN}/${fileName}`
     return fileUrl
   }
