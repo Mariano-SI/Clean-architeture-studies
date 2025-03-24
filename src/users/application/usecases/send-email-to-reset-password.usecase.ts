@@ -2,13 +2,14 @@ import { NotFoundError } from '@/common/domain/errors/not-found-error'
 import { UserModel } from '@/users/domain/models/users.model'
 import { UserTokensRepository } from '@/users/domain/repositories/user-tokens.repository'
 import { UsersRepository } from '@/users/domain/repositories/users.repository'
+import { UserOutputDto } from '../dtos/user-output.dto'
 
 interface Input {
   email: string
 }
 
 interface Output {
-  user: UserModel
+  user: UserOutputDto
   token: string
 }
 
@@ -29,6 +30,6 @@ export class SendEmailToResetPasswordUsecase {
       user_id: user.id,
     })
 
-    return { user, token }
+    return { user: new UserOutputDto(user), token }
   }
 }

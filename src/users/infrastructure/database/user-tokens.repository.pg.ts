@@ -11,6 +11,15 @@ import { userTokensQueries } from './user-tokens.queries'
 import { pool } from '@/common/infrastructure/database'
 
 export class UserTokensRepositoryPG implements UserTokensRepository {
+  private static instance: UserTokensRepositoryPG
+
+  static getInstance(): UserTokensRepositoryPG {
+    if (!UserTokensRepositoryPG.instance) {
+      UserTokensRepositoryPG.instance = new UserTokensRepositoryPG()
+    }
+    return UserTokensRepositoryPG.instance
+  }
+
   async findByToken(token: string): Promise<UserTokensModel> {
     const query = userTokensQueries.FIND_BY_TOKEN
     const { rows } = await pool.query(query, [token])
