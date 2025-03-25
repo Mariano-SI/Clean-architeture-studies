@@ -10,7 +10,7 @@ interface Input {
   password: string
 }
 
-export class ResetPasswprdUsecase {
+export class ResetPasswordUsecase {
   constructor(
     private readonly userRepository: UsersRepository,
     private readonly userTokensRepository: UserTokensRepository,
