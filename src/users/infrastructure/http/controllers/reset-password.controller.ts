@@ -6,7 +6,7 @@ import { HashProviderBcryptjs } from '@/common/infrastructure/providers/hash-pro
 import { ResetPasswordUsecase } from '@/users/application/usecases/reset.password.usecase'
 import { UserTokensRepositoryPG } from '../../database/user-tokens.repository.pg'
 
-export async function createUserController(
+export async function resetPasswordController(
   req: Request,
   res: Response,
 ): Promise<Response> {
